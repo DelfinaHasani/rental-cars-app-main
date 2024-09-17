@@ -239,3 +239,27 @@ span {
       transition: none;
     }
   }
+
+
+
+
+  
+  /* Add this to your CSS file */
+.directors-container {
+  margin: 20px;
+}
+
+.director-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.add-director-form {
+  margin-top: 20px;
+}
+
+button {
+  margin-left: 10px;
+}
+
