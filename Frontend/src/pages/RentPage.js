@@ -208,7 +208,7 @@ function Rent() {
                 {car.price}.00
               </Text>
               <Text ml={2} fontSize="xl" fontWeight="medium" color="gray.500">
-                MAD/day
+                EURO/day
               </Text>
             </HStack>
             {car.available === 1 && (

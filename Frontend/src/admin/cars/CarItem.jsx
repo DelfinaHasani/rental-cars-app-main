@@ -51,7 +51,7 @@ const CarItem = ({ car, deleteCar, cars, setcars }) => {
       <Td>{car.model}</Td>
       <Td>{car.gearbox}</Td>
       <Td>{car.fuel_type}</Td>
-      <Td>{car.price} MAD</Td>
+      <Td>{car.price} EURO</Td>
 
       {car.available === 1 ? (
         <Td className="text-success text-center">True</Td>

@@ -147,8 +147,8 @@ function Profile() {
         <Box w={"90%"}>
           <HStack>
             <Heading size={["lg", "xl"]}>
-              List of all Mr.
-              <strong className="text-success">{user?.firstname}</strong>{" "}
+              List of all
+              <strong className="text-success"> {user?.firstname}'s</strong>{" "}
               rentals
             </Heading>
             <Spacer />

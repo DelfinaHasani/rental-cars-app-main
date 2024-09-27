@@ -47,7 +47,7 @@ const CarCard = ({ props }) => {
           </HStack>
           <HStack py={3}>
             <Heading size={"md"} fontWeight="600" color="gray.600">
-              {props.price} MAD
+              {props.price} EURO
             </Heading>
             <Text color="gray.400">/day</Text>
           </HStack>

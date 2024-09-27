@@ -45,10 +45,10 @@
 <body>
     <h1>Rent Facture</h1>
     
-    <div class="info-container">
+    <!-- <div class="info-container">
         <span>Rental ID:</span>
         <span>{{ $obj['id'] }}</span>
-    </div>
+    </div> -->
 
         
     <div class="info-container">
@@ -58,11 +58,10 @@
         </div>
     </div>
     
-    
-    <div class="info-container">
+    <!-- <div class="info-container">
         <span>Car ID:</span>
         <span>{{ $obj['car_id'] }}</span>
-    </div>
+    </div> -->
     
     <div class="info-container">
         <span>Brand:</span>
@@ -71,7 +70,7 @@
     
     <div class="info-container">
         <span>Price:</span>
-        <span>{{ $obj['price'] }} MAD</span>
+        <span>{{ $obj['price'] }} EURO</span>
     </div>
 
     <div class="info-container">
@@ -79,15 +78,17 @@
         <span>{{ $obj['fuel_type'] }}</span>
     </div>
     
-    <div class="info-container">
+    <!-- <div class="info-container">
         <span>User ID:</span>
         <span>{{ $obj['user_id'] }}</span>
-    </div>
+    </div> -->
     
     <div class="info-container">
         <span>Firstname:</span>
         <span>{{ $obj['firstname'] }}</span>
     </div>
+
+    
     
     <div class="info-container">
         <span>Telephone:</span>
@@ -96,7 +97,7 @@
     
     <div class="info-container">
         <span>Total:</span>
-        <span>{{ $obj['total'] }} MAD</span>
+        <span>{{ $obj['total'] }} EURO</span>
     </div>
     
     <div class="info-container">

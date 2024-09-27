@@ -31,7 +31,7 @@ const RentItem = ({ rent, cars, update, deleteRent }) => {
       <Td>{rent.brand}</Td>
       <Td>{rent.model}</Td>
       <Td>{rent.fuel_type}</Td>
-      <Td>{rent.price}</Td>
+      <Td>{rent.price} EURO</Td>
       <Td>{rent.rental_date}</Td>
       <Td>{rent.return_date}</Td>
       <Td>

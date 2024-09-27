@@ -120,6 +120,7 @@ function AddCar({isOpen , setisOpen,cars, setcars}) {
                 <option value="gas">Gas</option>
                 <option value="diesel">Diesel</option>
                 <option value="electric">Electric</option>
+                <option value="electric">Petrol</option>
               </Select>
             </FormControl>
 

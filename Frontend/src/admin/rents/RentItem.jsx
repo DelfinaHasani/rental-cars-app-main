@@ -43,12 +43,12 @@ const RentItem = ({ rent }) => {
         ></Image>
       </Td>
       <Td>{rent.brand}</Td>
-      <Td>{rent.price}</Td>
+      <Td>{rent.price} EURO</Td>
       <Td>{rent.firstname}</Td>
       <Td>{rent.telephone}</Td>
       <Td>{rent.rental_date}</Td>
       <Td>{rent.return_date}</Td>
-      <Td className="text-bold">{rent.total} MAD</Td>
+      <Td className="text-bold">{rent.total} EURO</Td>
 
       <Td>
         <IconButton
