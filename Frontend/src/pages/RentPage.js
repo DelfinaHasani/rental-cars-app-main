@@ -61,69 +61,74 @@ function Rent() {
 
   async function rentACar(e) {
     e.preventDefault();
-
-    if(!token){
-      navigate('/login')
-      return 
+  
+    if (!token) {
+      navigate("/login");
+      return;
     }
-
-    if(!rentalDate || !returnDate){
-        return Swal.fire({
-          icon: "error",
-          title: "rental and return dates are required",
-        });
+  
+    if (!rentalDate || !returnDate) {
+      return Swal.fire({
+        icon: "error",
+        title: "Rental and return dates are required",
+      });
     }
-
+  
     const start = new Date(rentalDate);
     const end = new Date(returnDate);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-
-
+  
     if (start < today) {
       return Swal.fire({
         icon: "error",
         title: "Invalid rental date",
-        text: "Invalid rental date: Rental date has passed",
+        text: "Rental date has already passed",
       });
     }
-
-
-
-    if (end <= start){
+  
+    if (end <= start) {
       return Swal.fire({
         icon: "error",
-        title: "invalid number of days",
-        text: "The number of days must be at least 1"
+        title: "Invalid number of days",
+        text: "The number of days must be at least 1",
       });
     }
-
-
-
+  
     const differenceInMilliseconds = Math.abs(end - start);
     const rentDuration = Math.ceil(differenceInMilliseconds / (1000 * 60 * 60 * 24));
-
-      const price = car.price * rentDuration
-      const formData = {
-        rental_date : rentalDate,
-        return_date : returnDate,
-        price,
-        user_id : user.id,
-        car_id : car.id
-      }
-      console.log(formData)
-      
-      await axiosClient.post('http://127.0.0.1:8000/api/rents',formData)
-
+  
+    const price = car.price * rentDuration;
+    const formData = {
+      rental_date: rentalDate,
+      return_date: returnDate,
+      price,
+      user_id: user.id,
+      car_id: car.id,
+    };
+  
+    try {
+      await axiosClient.post("http://127.0.0.1:8000/api/rents", formData);
+  
       toastMessage(
-          `The rental is done, you are renting for ${rentDuration} days`,
-          "success",
-          "rent created"
-      ); 
-
-      navigate('/profile')
-    
+        `The rental is done, you are renting for ${rentDuration} days`,
+        "success",
+        "Rent created"
+      );
+  
+      navigate("/profile");
+    } catch (error) {
+      // Catch the error and show a toast message
+      if (error.response && error.response.status === 400) {
+        const errorMessage = error.response.data.error || "Booking failed due to an error.";
+        toastMessage(errorMessage, "error", "Booking Error");
+      } else {
+        // Generic error handling for other issues (network, etc.)
+        toastMessage("An unexpected error occurred. Please try again.", "error", "Unexpected Error");
+      }
+    }
   }
+  
 
   return (
     <Center h={"100vh"} m={["5%", "10%", "12%", "13%", "0"]}>

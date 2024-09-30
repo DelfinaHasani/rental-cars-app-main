@@ -51,25 +51,50 @@ class RentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'rental_date' => 'required|date',
-            'return_date' => 'required|date',
-            'price' => 'required|numeric',
-            'user_id' => 'required|exists:users,id',
-            'car_id' => 'required|exists:cars,id',
-        ]);
+{
+    // Validate incoming request
+    $request->validate([
+        'rental_date' => 'required|date',
+        'return_date' => 'required|date|after_or_equal:rental_date',
+        'price' => 'required|numeric',
+        'user_id' => 'required|exists:users,id',
+        'car_id' => 'required|exists:cars,id',
+    ]);
 
-        $rental = new Rent();
-        $rental->rental_date = $request->rental_date;
-        $rental->return_date = $request->return_date;
-        $rental->price = $request->price;
-        $rental->user_id = $request->user_id;
-        $rental->car_id = $request->car_id;
-        $rental->save();
+    $car_id = $request->input('car_id');
+    $rental_date = $request->input('rental_date');
+    $return_date = $request->input('return_date');
 
-        return response($rental);
+    // Check if the car is already booked for the selected date range
+    $existingRentals = Rent::where('car_id', $car_id)
+        ->where(function ($query) use ($rental_date, $return_date) {
+            $query->whereBetween('rental_date', [$rental_date, $return_date])
+                  ->orWhereBetween('return_date', [$rental_date, $return_date])
+                  ->orWhere(function ($query) use ($rental_date, $return_date) {
+                      $query->where('rental_date', '<', $rental_date)
+                            ->where('return_date', '>', $return_date);
+                  });
+        })
+        ->exists();
+
+    // If the car is already booked, return an error
+    if ($existingRentals) {
+        return response()->json(['error' => 'This car is not available for the selected dates.'], 400);
     }
+
+    // If available, proceed with the booking
+    $rental = new Rent();
+    $rental->rental_date = $request->rental_date;
+    $rental->return_date = $request->return_date;
+    $rental->price = $request->price;
+    $rental->user_id = $request->user_id;
+    $rental->car_id = $request->car_id;
+    $rental->save();
+
+    return response()->json(['success' => 'Car booked successfully!', 'data' => $rental], 200);
+}
+
+    
 
 
     /**
