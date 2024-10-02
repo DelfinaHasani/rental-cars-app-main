@@ -57,7 +57,7 @@ class CarController extends Controller
         // Create a new car instance
         $car = new Car();
         $car->brand = $validatedData['brand'];
-        $car->model = $validatedData['model'];
+    //    $car->model = $validatedData['model'];
         $car->fuel_type = $validatedData['fuelType'];
         $car->price = $validatedData['price'];
         $car->gearbox = $validatedData['gearbox'];

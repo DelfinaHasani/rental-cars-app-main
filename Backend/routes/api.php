@@ -7,14 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\RentController;
 use App\Http\Controllers\StripeController;
-use App\Http\Controllers\DirectorController;
-use App\Http\Controllers\MovieController;
-use App\Http\Controllers\SatelliteController;
-use App\Http\Controllers\PlanetController;
-use App\Http\Controllers\TeamController;
-use App\Http\Controllers\PlayerController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\ContractController;
+
 
 
 
@@ -106,19 +99,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('directors', DirectorController::class);
 
-Route::apiResource('movies', controller: MovieController::class);
-
-
-Route::apiResource(name: 'planets', controller: PlanetController::class);
-
-Route::apiResource('satellites', SatelliteController::class);
-
-Route::apiResource('teams', TeamController::class);
-
-Route::apiResource('players', PlayerController::class);
-
-Route::apiResource('employees', EmployeeController::class);
-
-Route::apiResource('contracts', controller: ContractController::class);
